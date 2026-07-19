@@ -18,13 +18,6 @@ function formatDate(dateStr) {
     .toUpperCase();
 }
 
-/* Real equirectangular planet maps (2048×1024, in /public/textures).
-   Scrolled horizontally to simulate rotation. Cycled by index. */
-const PLANETS = [
-  { map: "/textures/jupiter_map.jpg", alt: "Jupiter", spin: "32s" },
-  { map: "/textures/mars_map.jpg", alt: "Mars", spin: "48s" },
-];
-
 /* ─────────────────── parallax star layers ─────────────────── */
 
 function StarLayer({ count, size, opacity, blur = 0 }) {
@@ -59,45 +52,6 @@ function StarLayer({ count, size, opacity, blur = 0 }) {
           }}
         />
       ))}
-    </div>
-  );
-}
-
-/* ─────────────────────────── planet ─────────────────────────── */
-
-function Planet({ planet, reduced }) {
-  return (
-    <div
-      className="relative h-20 w-20 md:h-28 md:w-28 rounded-full overflow-hidden"
-      role="img"
-      aria-label={planet.alt}
-      style={{ boxShadow: "0 8px 34px rgba(0,0,0,0.65)" }}
-    >
-      {/* rotating surface — a doubled-width equirectangular map scrolled seamlessly */}
-      <div
-        className={reduced ? "absolute inset-y-0 left-0" : "exp-surface absolute inset-y-0 left-0"}
-        style={{
-          width: "200%",
-          backgroundImage: `url(${planet.map})`,
-          backgroundRepeat: "repeat-x",
-          backgroundSize: "50% 100%",
-          animationDuration: reduced ? undefined : planet.spin,
-        }}
-      />
-      {/* spherical shading: soft highlight + limb darkening → real 3D sphere */}
-      <div
-        className="absolute inset-0 rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at 30% 27%, rgba(255,255,255,0.30), rgba(255,255,255,0.05) 20%, transparent 46%)," +
-            "radial-gradient(circle at 50% 50%, transparent 48%, rgba(0,0,0,0.30) 76%, rgba(0,0,0,0.68) 100%)",
-        }}
-      />
-      {/* faint rim */}
-      <div
-        className="absolute inset-0 rounded-full pointer-events-none"
-        style={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06)" }}
-      />
     </div>
   );
 }
@@ -313,16 +267,18 @@ export default function ExperienceTimeline({ entries }) {
         {/* Entries */}
         <div className="space-y-16 md:space-y-28">
           {entries.map((entry, i) => {
-            const planet = PLANETS[i % PLANETS.length];
             const side = i % 2 === 0 ? "left" : "right";
             return (
               <div
                 key={`${entry.org}-${entry.startDate}`}
                 className="relative md:grid md:grid-cols-2 md:gap-32 items-center"
               >
-                {/* Planet on the spine */}
+                {/* Marker dot on the spine */}
                 <div className="absolute left-[27px] md:left-1/2 md:-translate-x-1/2 top-4 md:top-1/2 md:-translate-y-1/2 -translate-x-1/2 z-20">
-                  <Planet planet={planet} reduced={reduced} />
+                  <span
+                    className="block h-3.5 w-3.5 rounded-full bg-ink-950 border-2 border-accent-ember shadow-[0_0_12px_rgba(232,116,60,0.6)]"
+                    aria-hidden="true"
+                  />
                 </div>
 
                 {/* Card, alternating side */}
@@ -364,20 +320,6 @@ export default function ExperienceTimeline({ entries }) {
             opacity: 0.7;
           }
         }
-        :global(.exp-surface) {
-          animation-name: exp-rotate;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          will-change: transform;
-        }
-        @keyframes exp-rotate {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
         :global(.exp-flame) {
           animation: exp-flicker 0.18s ease-in-out infinite alternate;
         }
@@ -409,7 +351,6 @@ export default function ExperienceTimeline({ entries }) {
         }
         @media (prefers-reduced-motion: reduce) {
           :global(.exp-star),
-          :global(.exp-surface),
           :global(.exp-flame),
           :global(.exp-scan) {
             animation: none !important;
