@@ -106,63 +106,65 @@ export default async function SocialsGrid() {
   const hasPhone = Boolean(CONTACT.phone);
 
   return (
-    <GlassCard className="p-6 md:p-7 flex flex-col gap-6">
-      {/* Availability */}
-      {about.openToWork && (
-        <div className="inline-flex items-center gap-2 self-start rounded-full bg-green-500/10 border border-green-500/20 px-3 py-1.5">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-          </span>
-          <span className="text-xs font-medium text-green-400">Available for work</span>
-        </div>
-      )}
+    <GlassCard className="p-6 md:p-7">
+      <div className="flex flex-col gap-6">
+        {/* Availability */}
+        {about.openToWork && (
+          <div className="inline-flex items-center gap-2 self-start rounded-full bg-green-500/10 border border-green-500/20 px-3 py-1.5">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+            </span>
+            <span className="text-xs font-medium text-green-400">Available for work</span>
+          </div>
+        )}
 
-      {/* Direct contact — email + phone */}
-      <div className="mt-2">
-        <h3 className="text-[11px] font-medium text-text-dim uppercase tracking-[0.25em] mb-1">
-          Direct channel
-        </h3>
+        {/* Direct contact — email + phone */}
         <div>
-          <ChannelRow
-            icon={Mail}
-            iconClass="bg-accent-ember/10 text-accent-ember"
-            label="Email"
-            value={CONTACT.email}
-            href={`mailto:${CONTACT.email}`}
-          />
-          <ChannelRow
-            icon={Phone}
-            iconClass="bg-accent-violet/15 text-accent-violet"
-            label="Phone"
-            value={hasPhone ? CONTACT.phone : "Available on request"}
-            href={hasPhone ? `tel:${CONTACT.phone.replace(/\s+/g, "")}` : null}
-            last
-          />
+          <h3 className="text-[11px] font-medium text-text-dim uppercase tracking-[0.25em] mb-2">
+            Direct channel
+          </h3>
+          <div>
+            <ChannelRow
+              icon={Mail}
+              iconClass="bg-accent-ember/10 text-accent-ember"
+              label="Email"
+              value={CONTACT.email}
+              href={`mailto:${CONTACT.email}`}
+            />
+            <ChannelRow
+              icon={Phone}
+              iconClass="bg-accent-violet/15 text-accent-violet"
+              label="Phone"
+              value={hasPhone ? CONTACT.phone : "Available on request"}
+              href={hasPhone ? `tel:${CONTACT.phone.replace(/\s+/g, "")}` : null}
+              last
+            />
+          </div>
         </div>
-      </div>
 
-      {/* Profiles */}
-      <div>
-        <h3 className="text-[11px] font-medium text-text-dim uppercase tracking-[0.25em] mb-2">
-          Find me across the galaxy
-        </h3>
-        <div className="grid grid-cols-2 gap-x-2 gap-y-1">
-          {SOCIALS.map((social) => (
-            <SocialChip key={social.key} social={social} />
-          ))}
+        {/* Profiles */}
+        <div>
+          <h3 className="text-[11px] font-medium text-text-dim uppercase tracking-[0.25em] mb-2">
+            Find me across the galaxy
+          </h3>
+          <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+            {SOCIALS.map((social) => (
+              <SocialChip key={social.key} social={social} />
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Location + timezone */}
-      <div className="mt-1 pt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/5">
-        <div className="flex items-center gap-2 text-text-muted">
-          <MapPin size={15} className="shrink-0" aria-hidden="true" />
-          <span className="text-sm">{CONTACT.location || about.location}</span>
-        </div>
-        <div className="flex items-center gap-2 text-text-muted">
-          <Clock size={15} className="shrink-0" aria-hidden="true" />
-          <span className="text-sm">{CONTACT.timezone || about.timezone}</span>
+        {/* Location + timezone */}
+        <div className="pt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/5">
+          <div className="flex items-center gap-2 text-text-muted">
+            <MapPin size={15} className="shrink-0" aria-hidden="true" />
+            <span className="text-sm">{CONTACT.location || about.location}</span>
+          </div>
+          <div className="flex items-center gap-2 text-text-muted">
+            <Clock size={15} className="shrink-0" aria-hidden="true" />
+            <span className="text-sm">{CONTACT.timezone || about.timezone}</span>
+          </div>
         </div>
       </div>
     </GlassCard>
