@@ -23,7 +23,6 @@ import {
 import RevealText from "@/components/shared/animations/RevealText";
 import RoleSwitcher from "./RoleSwitcher";
 import ScrollCue from "./ScrollCue";
-import TerminalIntro from "./TerminalIntro";
 import { ease, dur } from "@/lib/motion";
 import { CONTACT, ACTIVE_SOCIALS } from "@/lib/site";
 
@@ -281,7 +280,7 @@ export default function Hero() {
 
       {/* Foreground content */}
       <div className="relative z-10 w-full">
-        <TerminalIntro>{HeroContent}</TerminalIntro>
+        {HeroContent}
       </div>
 
       {/* Scroll cue at bottom */}
