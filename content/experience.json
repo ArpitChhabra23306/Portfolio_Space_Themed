@@ -1,0 +1,28 @@
+[
+  {
+    "role": "Full Stack Developer Intern",
+    "org": "ModelSuite AI",
+    "location": "Remote",
+    "startDate": "2026-04-01",
+    "endDate": null,
+    "bullets": [
+      "Building end-to-end MERN stack features for an AI-powered SaaS platform",
+      "Implemented CI/CD pipelines reducing deployment time by 40%",
+      "Collaborating with cross-functional teams on product roadmap and sprint planning"
+    ],
+    "tags": ["MERN", "CI/CD", "SaaS", "Agile"]
+  },
+  {
+    "role": "Frontend Developer Intern",
+    "org": "TechVista Solutions",
+    "location": "Remote",
+    "startDate": "2025-06-01",
+    "endDate": "2025-09-30",
+    "bullets": [
+      "Developed responsive UI components using React and Tailwind CSS",
+      "Optimized web vitals achieving 95+ Lighthouse performance score",
+      "Integrated REST APIs and managed state with React Query"
+    ],
+    "tags": ["React", "Tailwind CSS", "REST APIs", "Performance"]
+  }
+]

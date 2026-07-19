@@ -1,0 +1,37 @@
+---
+title: "MindClash"
+slug: "mindclash"
+summary: "Real-time AI-moderated debate platform with live scoring and audience voting."
+problem: "Online debates lack structure, moderation, and real-time engagement — they devolve into shouting matches with no accountability."
+solution: "Built a full-stack platform with AI-powered moderation using Gemini, real-time WebSocket communication via Socket.io, and Redis-backed session management for low-latency interactions."
+impact: "500+ debates hosted during beta, 92% user satisfaction on moderation quality, featured in IIIT Una tech showcase."
+techStack: ["MongoDB", "Express", "React", "Node.js", "Socket.io", "Redis", "Gemini API"]
+domains: ["Real-time", "AI", "Full Stack"]
+liveUrl: "https://mindclash.vercel.app"
+repoUrl: "https://github.com/arpitchhabra/mindclash"
+mediaUrl: "/projects/mindclash-demo.gif"
+mediaType: "gif"
+featured: true
+pinned: true
+order: 1
+---
+
+## Overview
+
+MindClash reimagines online debates by introducing AI-powered moderation, real-time scoring, and structured argumentation. The platform supports 1v1 and panel debates with live audience participation.
+
+## Architecture
+
+The system uses a microservices-inspired architecture with:
+- **Frontend**: React SPA with real-time state sync via Socket.io
+- **Backend**: Express API server with Redis pub/sub for horizontal scaling
+- **AI Layer**: Gemini API integration for argument analysis and scoring
+- **Database**: MongoDB for persistent data, Redis for session state and caching
+
+## Key Features
+
+- Real-time debate rooms with WebSocket communication
+- AI moderation that flags logical fallacies and off-topic arguments
+- Live scoring algorithm based on argument strength, evidence, and rebuttals
+- Audience voting with real-time poll visualization
+- Debate replay and highlight generation

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Meta Front-End Developer Professional Certificate",
+    "issuer": "Meta (via Coursera)",
+    "issuerLogo": "/logos/meta.svg",
+    "issueDate": "2024-08-01",
+    "expirationDate": null,
+    "credentialId": "META-FE-2024-AC",
+    "verifyUrl": "https://www.coursera.org/account/accomplishments/professional-cert/META-FE-2024-AC"
+  },
+  {
+    "name": "AWS Cloud Practitioner Essentials",
+    "issuer": "Amazon Web Services",
+    "issuerLogo": "/logos/aws.svg",
+    "issueDate": "2024-06-01",
+    "expirationDate": "2027-06-01",
+    "credentialId": "AWS-CPE-2024-AC",
+    "verifyUrl": "https://www.credly.com/badges/aws-cpe-2024-ac"
+  },
+  {
+    "name": "JavaScript Algorithms and Data Structures",
+    "issuer": "freeCodeCamp",
+    "issuerLogo": "/logos/freecodecamp.svg",
+    "issueDate": "2024-03-01",
+    "expirationDate": null,
+    "credentialId": "FCC-JSADS-2024-AC",
+    "verifyUrl": "https://www.freecodecamp.org/certification/arpitchhabra/javascript-algorithms-and-data-structures"
+  },
+  {
+    "name": "The Complete Web Development Bootcamp",
+    "issuer": "Udemy",
+    "issuerLogo": "/logos/udemy.svg",
+    "issueDate": "2023-12-01",
+    "expirationDate": null,
+    "credentialId": "UC-WEBDEV-2023-AC",
+    "verifyUrl": "https://www.udemy.com/certificate/UC-WEBDEV-2023-AC"
+  }
+]

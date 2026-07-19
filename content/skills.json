@@ -1,0 +1,33 @@
+{
+  "categories": ["Frontend", "Backend", "DevOps", "Database", "Languages", "Tools"],
+  "skills": [
+    { "name": "React", "category": "Frontend", "icon": "react", "proficiency": "Advanced", "yearsOfExperience": 3 },
+    { "name": "Next.js", "category": "Frontend", "icon": "nextjs", "proficiency": "Advanced", "yearsOfExperience": 2 },
+    { "name": "Tailwind CSS", "category": "Frontend", "icon": "tailwind", "proficiency": "Advanced", "yearsOfExperience": 2 },
+    { "name": "Framer Motion", "category": "Frontend", "icon": "framer", "proficiency": "Proficient", "yearsOfExperience": 1 },
+    { "name": "HTML/CSS", "category": "Frontend", "icon": "html", "proficiency": "Advanced", "yearsOfExperience": 4 },
+    { "name": "Node.js", "category": "Backend", "icon": "node", "proficiency": "Advanced", "yearsOfExperience": 3 },
+    { "name": "Express.js", "category": "Backend", "icon": "express", "proficiency": "Advanced", "yearsOfExperience": 3 },
+    { "name": "Socket.io", "category": "Backend", "icon": "socketio", "proficiency": "Proficient", "yearsOfExperience": 2 },
+    { "name": "REST APIs", "category": "Backend", "icon": "api", "proficiency": "Advanced", "yearsOfExperience": 3 },
+    { "name": "GraphQL", "category": "Backend", "icon": "graphql", "proficiency": "Familiar", "yearsOfExperience": 1 },
+    { "name": "Docker", "category": "DevOps", "icon": "docker", "proficiency": "Proficient", "yearsOfExperience": 1 },
+    { "name": "GitHub Actions", "category": "DevOps", "icon": "github-actions", "proficiency": "Proficient", "yearsOfExperience": 2 },
+    { "name": "Vercel", "category": "DevOps", "icon": "vercel", "proficiency": "Advanced", "yearsOfExperience": 2 },
+    { "name": "Nginx", "category": "DevOps", "icon": "nginx", "proficiency": "Familiar", "yearsOfExperience": 1 },
+    { "name": "MongoDB", "category": "Database", "icon": "mongodb", "proficiency": "Advanced", "yearsOfExperience": 3 },
+    { "name": "PostgreSQL", "category": "Database", "icon": "postgresql", "proficiency": "Proficient", "yearsOfExperience": 1 },
+    { "name": "Redis", "category": "Database", "icon": "redis", "proficiency": "Proficient", "yearsOfExperience": 1 },
+    { "name": "Firebase", "category": "Database", "icon": "firebase", "proficiency": "Familiar", "yearsOfExperience": 1 },
+    { "name": "JavaScript", "category": "Languages", "icon": "javascript", "proficiency": "Advanced", "yearsOfExperience": 4 },
+    { "name": "TypeScript", "category": "Languages", "icon": "typescript", "proficiency": "Proficient", "yearsOfExperience": 1 },
+    { "name": "Python", "category": "Languages", "icon": "python", "proficiency": "Proficient", "yearsOfExperience": 2 },
+    { "name": "C++", "category": "Languages", "icon": "cpp", "proficiency": "Advanced", "yearsOfExperience": 3 },
+    { "name": "Java", "category": "Languages", "icon": "java", "proficiency": "Familiar", "yearsOfExperience": 1 },
+    { "name": "Git", "category": "Tools", "icon": "git", "proficiency": "Advanced", "yearsOfExperience": 4 },
+    { "name": "VS Code", "category": "Tools", "icon": "vscode", "proficiency": "Advanced", "yearsOfExperience": 4 },
+    { "name": "Vim", "category": "Tools", "icon": "vim", "proficiency": "Proficient", "yearsOfExperience": 2 },
+    { "name": "Figma", "category": "Tools", "icon": "figma", "proficiency": "Familiar", "yearsOfExperience": 1 },
+    { "name": "Postman", "category": "Tools", "icon": "postman", "proficiency": "Proficient", "yearsOfExperience": 2 }
+  ]
+}

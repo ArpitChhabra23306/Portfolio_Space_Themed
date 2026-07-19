@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-ink-950 text-text-primary;
+  }
+
+  ::selection {
+    @apply bg-accent-ember/30 text-text-primary;
+  }
+}
+
+/* Custom cursor: preserve native cursor on interactive elements */
+@media (hover: hover) and (pointer: fine) {
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: pointer;
+  }
+}
+
+/* Disable custom cursor animations when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
