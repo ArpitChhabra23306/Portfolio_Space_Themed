@@ -244,19 +244,8 @@ export default function ExperienceTimeline({ entries }) {
   return (
     <div
       ref={sectionRef}
-      className="relative bg-[#050509] py-24 md:py-32 overflow-hidden"
+      className="relative py-24 md:py-32 overflow-hidden"
     >
-      {/* Nebula wash */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(1100px 600px at 82% 8%, rgba(124,92,255,0.10), transparent 60%)," +
-            "radial-gradient(900px 520px at 10% 92%, rgba(232,116,60,0.08), transparent 60%)",
-        }}
-      />
-
       {/* Distant planet */}
       <div
         className="pointer-events-none absolute -right-24 top-24 h-72 w-72 rounded-full opacity-30 blur-[2px]"

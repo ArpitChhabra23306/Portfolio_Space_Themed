@@ -63,14 +63,6 @@ export default function AboutClient({ data, children }) {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto px-6 md:px-12 mt-32 z-10">
-      
-      {/* Background glow bleeding down from the Globe Hero */}
-      <div 
-        className="absolute -top-64 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[500px] pointer-events-none z-[-1]"
-        style={{
-          background: "radial-gradient(ellipse at top, rgba(30, 50, 90, 0.15) 0%, rgba(8, 8, 12, 0) 70%)"
-        }}
-      />
 
       {/* Section Header */}
       <motion.div 
