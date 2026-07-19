@@ -31,6 +31,9 @@ const newsreader = Newsreader({
   display: "swap",
   style: ["italic"],
   weight: ["400", "500", "600"],
+  // Disable the auto size-adjusted fallback — Next can't compute override
+  // metrics for the italic-only Newsreader, which produced a build warning.
+  adjustFontFallback: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
