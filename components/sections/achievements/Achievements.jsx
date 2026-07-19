@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { readJson } from "@/lib/content";
 import Section from "@/components/shared/Section";
 import SectionHeading from "@/components/shared/SectionHeading";
+import Starfield from "@/components/shared/Starfield";
 import FadeIn from "@/components/shared/animations/FadeIn";
 import TrophyShelf from "./TrophyShelf";
 
@@ -17,22 +18,26 @@ export default function Achievements() {
   const hackathonAchievements = achievements.filter((a) => a.category === "Hackathon");
 
   return (
-    <Section id="achievements">
-      <SectionHeading
-        eyebrow="Track Record"
-        subtitle="Live coding stats and hard-won ranks."
-      >
-        Achievements<em className="font-serif italic"> & Stats</em>
-      </SectionHeading>
+    <Section id="achievements" className="relative overflow-hidden">
+      <Starfield />
 
-      <div className="flex flex-col gap-4">
-        <FadeIn>
-          <CodingStats />
-        </FadeIn>
+      <div className="relative">
+        <SectionHeading
+          eyebrow="Track Record"
+          subtitle="Live coding stats and hard-won ranks."
+        >
+          Achievements<em className="font-serif italic"> & Stats</em>
+        </SectionHeading>
 
-        <FadeIn>
-          <TrophyShelf achievements={hackathonAchievements} />
-        </FadeIn>
+        <div className="flex flex-col gap-4">
+          <FadeIn>
+            <CodingStats />
+          </FadeIn>
+
+          <FadeIn>
+            <TrophyShelf achievements={hackathonAchievements} />
+          </FadeIn>
+        </div>
       </div>
     </Section>
   );
