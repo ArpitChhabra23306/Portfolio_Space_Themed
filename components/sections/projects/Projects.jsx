@@ -1,4 +1,5 @@
 import Section from "@/components/shared/Section";
+import Starfield from "@/components/shared/Starfield";
 import { getProjects } from "@/lib/content";
 import ProjectsShowcase from "./ProjectsShowcase";
 
@@ -17,9 +18,11 @@ export default async function Projects() {
     .map((p) => ({ frontmatter: p.frontmatter }));
 
   return (
-    <Section id="projects">
+    <Section id="projects" className="relative overflow-hidden">
+      <Starfield />
+
       {/* Section Header */}
-      <div className="mb-12 md:mb-16 flex flex-col items-center text-center">
+      <div className="relative mb-12 md:mb-16 flex flex-col items-center text-center">
         <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-text-muted/50 mb-4">
           [ Missions ]
         </p>
@@ -38,7 +41,9 @@ export default async function Projects() {
         ))}
       </ul>
 
-      <ProjectsShowcase projects={pinnedProjects} />
+      <div className="relative">
+        <ProjectsShowcase projects={pinnedProjects} />
+      </div>
     </Section>
   );
 }

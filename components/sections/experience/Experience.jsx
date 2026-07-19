@@ -1,4 +1,5 @@
 import { readJson } from "@/lib/content";
+import Starfield from "@/components/shared/Starfield";
 import ExperienceTimeline from "./ExperienceTimeline";
 
 /**
@@ -24,7 +25,9 @@ export default function Experience() {
   const sorted = sortExperience(entries);
 
   return (
-    <section id="experience">
+    <section id="experience" className="relative overflow-hidden">
+      <Starfield />
+
       {/* Hidden accessible list for SEO / screen readers */}
       <ul className="sr-only" aria-label="Work experience">
         {sorted.map((e) => (
@@ -34,7 +37,9 @@ export default function Experience() {
         ))}
       </ul>
 
-      <ExperienceTimeline entries={sorted} />
+      <div className="relative">
+        <ExperienceTimeline entries={sorted} />
+      </div>
     </section>
   );
 }

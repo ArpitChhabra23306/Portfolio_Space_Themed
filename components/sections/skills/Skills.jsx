@@ -1,5 +1,6 @@
 import { readJson } from "@/lib/content";
 import Section from "@/components/shared/Section";
+import Starfield from "@/components/shared/Starfield";
 import SkillsOrbit from "./SkillsOrbit";
 
 /**
@@ -11,9 +12,11 @@ export default function Skills() {
   const { categories, skills } = readJson("skills.json");
 
   return (
-    <Section id="skills" className="py-16 md:py-20">
+    <Section id="skills" className="relative overflow-hidden py-16 md:py-20">
+      <Starfield />
+
       {/* Section Header */}
-      <div className="mb-3 md:mb-4 flex flex-col items-center text-center">
+      <div className="relative mb-3 md:mb-4 flex flex-col items-center text-center">
         <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-text-muted/50 mb-4">
           [ Arsenal ]
         </p>
@@ -32,7 +35,9 @@ export default function Skills() {
         ))}
       </ul>
 
-      <SkillsOrbit categories={categories} skills={skills} />
+      <div className="relative">
+        <SkillsOrbit categories={categories} skills={skills} />
+      </div>
     </Section>
   );
 }

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 // Tiled star layers built from small radial-gradient dots — subtle, so they
-// read as a faint field rather than a dominant pattern.
+// read as a faint field rather than a dominant pattern. Stars only, no nebula.
 const STAR_LAYER_1 =
   "radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.7), transparent)," +
   "radial-gradient(1px 1px at 130px 50px, rgba(255,255,255,0.6), transparent)," +
@@ -16,15 +16,15 @@ const STAR_LAYER_2 =
   "radial-gradient(1px 1px at 300px 140px, rgba(255,255,255,0.5), transparent)";
 
 /**
- * Global star field — a single fixed, full-viewport backdrop rendered once
- * (in the root layout) behind all page content. Stars only, no nebula, so the
- * background stays a consistent tone from section to section.
+ * Section-scoped star field — a subtle, non-interactive backdrop of tiled stars.
+ * Place it inside a `relative overflow-hidden` container; keep sibling content in
+ * a `relative` wrapper so it renders above the stars.
  */
 export default function Starfield({ className }) {
   return (
     <div
       aria-hidden="true"
-      className={cn("fixed inset-0 -z-10 pointer-events-none", className)}
+      className={cn("absolute inset-0 pointer-events-none overflow-hidden", className)}
     >
       <div
         className="absolute inset-0"
