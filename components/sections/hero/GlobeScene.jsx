@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import * as THREE from "three";
@@ -107,8 +107,8 @@ function Scene({ scrollProgress, pointer }) {
 
       <Stars
         radius={120}
-        depth={80}
-        count={3500}
+        depth={60}
+        count={1600}
         factor={3}
         saturation={0}
         fade
@@ -131,6 +131,10 @@ export default function GlobeScene({ scrollProgress }) {
   // so we listen on the window and let the globe ease toward the cursor.
   const pointer = useRef({ x: 0, y: 0 });
 
+  // Pause the render loop when the hero is scrolled out of view — the globe
+  // was rendering every frame across the entire page, wasting GPU.
+  const [active, setActive] = useState(true);
+
   useEffect(() => {
     function handleMove(e) {
       pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -141,15 +145,27 @@ export default function GlobeScene({ scrollProgress }) {
     return () => window.removeEventListener("pointermove", handleMove);
   }, []);
 
+  useEffect(() => {
+    const hero = document.getElementById("hero");
+    if (!hero || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(hero);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <Canvas
+      frameloop={active ? "always" : "never"}
       camera={{ position: [0, 0, 6], fov: 42, near: 0.1, far: 1000 }}
       gl={{
         alpha: true,
         antialias: true,
         powerPreference: "high-performance",
       }}
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       style={{
         position: "absolute",
         top: 0,

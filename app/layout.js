@@ -7,7 +7,6 @@ import Nav from "@/components/shared/Nav";
 import Footer from "@/components/shared/Footer";
 import ReadingProgressBar from "@/components/sections/extras/ReadingProgressBar";
 import BackToTop from "@/components/sections/extras/BackToTop";
-import ThemeToggle from "@/components/sections/extras/ThemeToggle";
 import SmoothScroller from "@/components/shared/SmoothScroller";
 import "./globals.css";
 
@@ -59,17 +58,6 @@ export default function RootLayout({ children }) {
     >
       <head>
         <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('theme') || 
-                  (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-                document.documentElement.setAttribute('data-theme', theme);
-              } catch (e) {}
-            `,
-          }}
-        />
-        <script
           id="ld-person"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLD) }}
@@ -79,9 +67,7 @@ export default function RootLayout({ children }) {
         <SmoothScroller>
           <TerminalLoader />
           <ReadingProgressBar />
-          <Nav>
-            <ThemeToggle />
-          </Nav>
+          <Nav />
           {children}
           <Footer />
           <BackToTop />

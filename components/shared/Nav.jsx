@@ -21,10 +21,8 @@ const NAV_LINKS = [
  * Features a scroll progress track with dots for each section,
  * active section highlighting, and story-like scroll-through feel.
  * Hidden on mobile — replaced with a floating hamburger.
- *
- * @param {{ children?: React.ReactNode }} props - children slot for ThemeToggle
  */
-export default function Nav({ children }) {
+export default function Nav() {
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -57,16 +55,26 @@ export default function Nav({ children }) {
     return () => observer.disconnect();
   }, []);
 
-  // Overall scroll progress for the vertical track
+  // Overall scroll progress for the vertical track — throttled to one update
+  // per animation frame so we don't re-render on every scroll event.
   useEffect(() => {
-    function handleScroll() {
+    let rafId = null;
+    function compute() {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
       setScrollProgress(Math.min(progress, 1));
+      rafId = null;
+    }
+    function handleScroll() {
+      if (rafId != null) return;
+      rafId = requestAnimationFrame(compute);
     }
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    compute();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId != null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Close mobile menu on escape key
@@ -140,21 +148,6 @@ export default function Nav({ children }) {
             }}
             aria-hidden="true"
           />
-
-          {/* ☄ Traveling comet — rides the spine as you scroll (the "flight path" marker) */}
-          <div
-            className="absolute left-[5px] z-[5] pointer-events-none transition-[top] duration-150 ease-out"
-            style={{
-              top: `calc(0.5rem + ${scrollProgress} * (100% - 1rem))`,
-              transform: "translate(-50%, -50%)",
-            }}
-            aria-hidden="true"
-          >
-            {/* trailing tail (fades upward, behind the direction of travel) */}
-            <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-0.5 h-6 w-[2px] rounded-full bg-gradient-to-t from-accent-ember/80 to-transparent" />
-            {/* glowing core */}
-            <span className="block w-2.5 h-2.5 rounded-full bg-gradient-to-br from-accent-ember to-accent-violet shadow-[0_0_12px_3px_rgba(232,116,60,0.55)]" />
-          </div>
 
           {/* Nav items */}
           <ul className="relative flex flex-col gap-0 z-10">
@@ -243,8 +236,6 @@ export default function Nav({ children }) {
           </ul>
         </div>
 
-        {/* Theme toggle at bottom */}
-        <div className="mt-6 pl-1">{children}</div>
       </div>
 
       {/* ─── Mobile: Floating hamburger button (bottom-left) ─── */}
@@ -336,9 +327,6 @@ export default function Nav({ children }) {
               );
             })}
           </ul>
-
-          {/* Theme toggle */}
-          <div className="mt-8">{children}</div>
         </div>
       )}
     </nav>
