@@ -8,6 +8,7 @@ import Footer from "@/components/shared/Footer";
 import ReadingProgressBar from "@/components/sections/extras/ReadingProgressBar";
 import BackToTop from "@/components/sections/extras/BackToTop";
 import SmoothScroller from "@/components/shared/SmoothScroller";
+import Starfield from "@/components/shared/Starfield";
 import "./globals.css";
 
 const CustomCursor = dynamic(
@@ -66,7 +67,8 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLD) }}
         />
       </head>
-      <body className="font-sans bg-ink-950 text-text-primary antialiased">
+      <body className="font-sans text-text-primary antialiased">
+        <Starfield />
         <SmoothScroller>
           <TerminalLoader />
           <ReadingProgressBar />

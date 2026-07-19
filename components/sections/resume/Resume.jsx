@@ -1,7 +1,6 @@
 import { FileText, Download, ExternalLink } from "lucide-react";
 import Section from "@/components/shared/Section";
 import SectionHeading from "@/components/shared/SectionHeading";
-import Starfield from "@/components/shared/Starfield";
 import GlassCard from "@/components/shared/GlassCard";
 import ResumeMirror from "./ResumeMirror";
 
@@ -15,18 +14,15 @@ const DOWNLOAD_FILENAME = "Arpit-Chhabra-Resume.pdf";
  */
 export default function Resume() {
   return (
-    <Section id="resume" className="relative overflow-hidden">
-      <Starfield />
+    <Section id="resume">
+      <SectionHeading
+        eyebrow="Dossier"
+        subtitle="The full story in a single page."
+      >
+        Resume
+      </SectionHeading>
 
-      <div className="relative">
-        <SectionHeading
-          eyebrow="Dossier"
-          subtitle="The full story in a single page."
-        >
-          Resume
-        </SectionHeading>
-
-        <div className="flex justify-center">
+      <div className="flex justify-center">
         <GlassCard className="w-full max-w-xl p-8 sm:p-10">
           <div className="flex flex-col items-center text-center gap-5">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-ember/10 border border-accent-ember/20 text-accent-ember">
@@ -64,11 +60,10 @@ export default function Resume() {
             </div>
           </div>
         </GlassCard>
-        </div>
-
-        {/* ATS/SEO mirror — visually hidden, still read by crawlers & screen readers */}
-        <ResumeMirror />
       </div>
+
+      {/* ATS/SEO mirror — visually hidden, still read by crawlers & screen readers */}
+      <ResumeMirror />
     </Section>
   );
 }

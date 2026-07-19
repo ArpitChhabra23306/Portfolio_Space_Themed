@@ -18,8 +18,12 @@
     }
   }
 
+  html {
+    @apply bg-ink-950;
+  }
+
   body {
-    @apply bg-ink-950 text-text-primary;
+    @apply text-text-primary;
   }
 
   ::selection {
