@@ -1,0 +1,37 @@
+---
+title: "StreamSphere Backend API"
+slug: "streamsphere-backend-api"
+summary: "A production-style, YouTube-inspired backend API with dual-token auth, Cloudinary video pipelines, subscriptions, and social engagement."
+problem: "Building a video-platform backend requires getting a lot of things right at once — secure auth, large file uploads, complex aggregation queries, and consistent error handling — that most tutorials skip or oversimplify."
+solution: "Built a layered (Router → Middleware → Controller → Model) Express + MongoDB REST API implementing secure dual-token JWT authentication, Multer-to-Cloudinary video/thumbnail pipelines, MongoDB aggregation-based subscription counts, and standardized error/response utilities across every route."
+impact: "A fully modeled video backend covering auth, uploads, playlists, subscriptions, likes, and comments — and a documented code audit that caught a real field-name bug (`user` vs `likedBy`) and incomplete router mounts before they shipped."
+techStack: ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "bcrypt", "Cloudinary", "Multer"]
+domains: ["Backend", "REST API", "Video Platform"]
+liveUrl: ""
+repoUrl: "https://github.com/ArpitChhabra23306/streamSphere-Backend-API"
+mediaUrl: "/projects/streamsphere-preview.png"
+mediaType: "image"
+featured: false
+pinned: true
+order: 5
+---
+
+## Overview
+
+StreamSphere is a production-ready, YouTube-like backend video-streaming platform API, handling secure cookie-based authentication, video/thumbnail uploading and transcoding via Cloudinary, subscription systems, playlists, and engagement metrics (likes, comments, tweets).
+
+## Core Features
+
+- **Dual-Token Authentication**: Short-lived `accessToken` plus a long-lived `refreshToken` persisted on the user document, allowing silent token refresh without re-login. Passwords are hashed via a `bcrypt` pre-save hook at 10 salt rounds.
+- **Video Publishing Pipeline**: Multer stages `videoFile` and `thumbnail` uploads on disk, `uploadOnCloudinary` pushes them to cloud storage and returns remote URLs, and local temp files are purged with `fs.unlinkSync()` immediately after.
+- **Aggregation-Driven Subscriptions**: `getUserChannelProfile` uses MongoDB `$lookup` + `$addFields` to compute subscriber counts and the current user's subscription status in a single aggregation query, rather than N+1 lookups.
+- **Layered Architecture**: Every request flows through Routes → Middleware (Multer/Auth) → Controllers → Models, with `asyncHandler` auto-forwarding errors to Express's error pipeline and `ApiResponse`/`ApiErrors` utilities standardizing every JSON payload.
+
+## Engineering Audit
+
+While documenting the codebase, I traced a full request lifecycle and surfaced two real issues worth fixing before this goes further:
+
+- **Field-name mismatch**: `like.model.js` defines the liking-user reference as `likedBy`, but `toggleVideoLike`/`toggleCommentLike` in the controller query and write using `user` instead — meaning likes silently fail to match on lookup. Root-caused to a refactor that renamed the schema field without updating the controllers.
+- **Unmounted routers**: several feature routers (tweets, comments, subscriptions, likes, playlists, dashboard, healthcheck) were wired but commented out in `app.js`, so those endpoints weren't actually reachable over HTTP despite being fully implemented.
+
+Both are the kind of bug that only surfaces under a real code trace — exactly the value of pairing implementation with a deliberate architecture review.

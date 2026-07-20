@@ -1,0 +1,35 @@
+---
+title: "CareerCraft-AI"
+slug: "careercraft-ai"
+summary: "AI-powered career accelerator with a custom asymmetric RAG search engine, mock interview simulator, and gamified retention system."
+problem: "Job seekers juggle scattered tools for resume review, interview practice, and document Q&A — with no single platform that actually understands their documents."
+solution: "Built a MERN platform with a custom-built asymmetric Retrieval-Augmented Generation pipeline (Jina embeddings + MongoDB Atlas vector search + Groq Llama 3.3) for grounded document chat, alongside AI mock interviews, flashcard/quiz generators, and a full gamification and subscription-tiering system."
+impact: "Ships a production RAG pipeline with a lazy-evaluation parse cache (zero redundant Cloudinary calls after first open), strict JSON-constrained LLM outputs for quizzes, and a quota-enforced subscription system (Free/Pro/Enterprise)."
+techStack: ["React 19", "Vite", "Tailwind CSS v4", "Framer Motion", "Node.js", "Express 5", "MongoDB", "Mongoose", "OpenAI API", "Groq API", "Jina AI Embeddings", "Cloudinary", "Razorpay"]
+domains: ["AI", "RAG", "Full Stack"]
+liveUrl: "https://careercraft-ai-silk.vercel.app/"
+repoUrl: "https://github.com/ArpitChhabra23306/CareerCraft-AI"
+mediaUrl: "/projects/careercraft-preview.gif"
+mediaType: "gif"
+featured: true
+pinned: true
+order: 2
+---
+
+## Overview
+
+CareerCraft-AI is an enterprise-grade AI career accelerator and document intelligence platform, built on a decoupled MERN architecture with a custom asymmetric RAG search engine, dynamic mock interview simulations, and gamified retention pipelines.
+
+## Core Features
+
+- **Asymmetric RAG Pipeline**: A recursive character splitter chunks documents at a 500-character window with 100-character overlap. Jina AI v3 uses two distinct embedding modes — `retrieval.passage` for indexed chunks and `retrieval.query` for user questions — so short queries align correctly with long document answers. MongoDB Atlas HNSW vector search runs cosine-similarity nearest-neighbor queries, pre-filtered by `documentId` so users never retrieve chunks from other documents.
+- **Lazy Document Cache**: Multer streams PDFs directly to Cloudinary on upload with zero local disk writes. `pdf-parse` runs once on first open and the raw text is cached to MongoDB — every subsequent summary, quiz, or chat request hits the cached field directly, with zero further network calls to Cloudinary.
+- **Structured JSON Generation**: Flashcards and MCQ quizzes use OpenAI's `response_format: { type: "json_object" }` constrained decoding, masking out any token that would break JSON syntax — guaranteeing clean parses with no markdown fencing.
+- **AI Mock Interviewer**: Interview settings (role, difficulty, company, skills) are injected into a detailed system prompt; full conversation history is reloaded from MongoDB and replayed to OpenAI each turn so the stateless API maintains contextual memory across the interview.
+- **Gamification & Streaks**: XP for logins, uploads, quizzes, and interviews, with a consecutive-day streak tracker, milestone bonuses, and daily XP caps to prevent abuse.
+- **Subscription Tiering**: Free/Pro/Enterprise tiers enforced via middleware that checks monthly usage counters (`interviewsThisMonth`, `quizzesThisMonth`) before every AI route, returning HTTP 403 once a limit is exceeded.
+
+## Tech Highlights
+
+- **Frontend**: React 19 on Vite with the Rust-based Rolldown bundler for near-instant HMR, Tailwind CSS v4's CSS-first engine, and `react-markdown` + `remark-gfm` to render AI responses as styled tables and syntax-highlighted code.
+- **Backend**: Express 5's native async error handling (no manual try/catch wrappers needed), JWT dual-cookie auth with OTP email verification via Nodemailer, and Razorpay-backed subscription billing with signature-verified webhooks.

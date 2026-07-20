@@ -16,10 +16,10 @@ const SkillPlayground = dynamic(() => import("./SkillPlayground"), {
 
 const SUBTITLES = {
   "MindClash": "AI Debate Platform",
-  "DevFlow": "Dev Productivity",
-  "QuickNote AI": "Smart Notes",
-  "CodeRace": "Competitive Coding",
-  "Portfolio v2": "This Portfolio",
+  "CareerCraft-AI": "AI Career Accelerator",
+  "Strata": "Real-Time AI Search",
+  "Multimodal RAG Pipeline": "Multimodal RAG",
+  "StreamSphere Backend API": "Video Platform API",
 };
 
 const contentVariants = {

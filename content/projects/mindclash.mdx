@@ -1,14 +1,14 @@
 ---
 title: "MindClash"
 slug: "mindclash"
-summary: "Real-time AI-moderated debate platform with live scoring and audience voting."
-problem: "Online debates lack structure, moderation, and real-time engagement — they devolve into shouting matches with no accountability."
-solution: "Built a full-stack platform with AI-powered moderation using Gemini, real-time WebSocket communication via Socket.io, and Redis-backed session management for low-latency interactions."
-impact: "500+ debates hosted during beta, 92% user satisfaction on moderation quality, featured in IIIT Una tech showcase."
-techStack: ["MongoDB", "Express", "React", "Node.js", "Socket.io", "Redis", "Gemini API"]
+summary: "Real-time, AI-moderated multiplayer debate platform with autonomous judging, ELO ranking, and a spectator betting economy."
+problem: "Online debates lack structure, unbiased judging, and real-time engagement — they devolve into shouting matches with no accountability or fair scoring."
+solution: "Built a real-time debate platform where OpenAI (gpt-4o-mini) acts as an autonomous arbiter, migrating from per-message API calls to a batched end-of-match analysis pipeline for optimized token usage, with a mathematical fallback heuristic if the API is unavailable."
+impact: "Ships a full competitive loop: matchmaking, live WebSocket rooms, anonymous aliasing for anti-bias voting, ELO-based tier progression, and an XP-based spectator betting marketplace."
+techStack: ["React 18", "Vite", "Tailwind CSS", "Framer Motion", "Socket.io", "Node.js", "Express.js", "MongoDB", "Redis", "OpenAI API", "JWT"]
 domains: ["Real-time", "AI", "Full Stack"]
-liveUrl: "https://mindclash.vercel.app"
-repoUrl: "https://github.com/arpitchhabra/mindclash"
+liveUrl: "https://mind-clash-nine.vercel.app/"
+repoUrl: "https://github.com/ArpitChhabra23306/Mindclash"
 mediaUrl: "/projects/mindclash-demo.gif"
 mediaType: "gif"
 featured: true
@@ -18,20 +18,19 @@ order: 1
 
 ## Overview
 
-MindClash reimagines online debates by introducing AI-powered moderation, real-time scoring, and structured argumentation. The platform supports 1v1 and panel debates with live audience participation.
+MindClash is a highly scalable, real-time web application for hosting structured debates. Version 2.0 migrated the core arbitration engine to OpenAI (`gpt-4o-mini`) and heavily optimized API latency through batched LLM processing.
 
-## Architecture
+## Core Features
 
-The system uses a microservices-inspired architecture with:
-- **Frontend**: React SPA with real-time state sync via Socket.io
-- **Backend**: Express API server with Redis pub/sub for horizontal scaling
-- **AI Layer**: Gemini API integration for argument analysis and scoring
-- **Database**: MongoDB for persistent data, Redis for session state and caching
+- **Real-Time Debate Engine**: Socket.io "Rooms" isolate high-frequency events (timer ticks, live chat, argument submissions) to relevant participants, drastically reducing server bandwidth. The Node.js server is the authoritative source of truth for game state, preventing client-side manipulation of timers or round progression.
+- **Autonomous AI Arbiter**: Migrated from per-message API calls to a batched analysis pipeline — the server compiles the entire debate transcript and sends it to OpenAI in a single call at the end of the match. The LLM is constrained via strict system prompts to return a nested JSON object with the winner, mathematical scores (0-100), fact-checking flags, and personalized feedback.
+- **Whisper Mode**: Before submitting a turn, users can ask the AI to evaluate their draft in real-time, returning counter-points and structural tips.
+- **Smart Fallback Heuristics**: A purely mathematical scoring algorithm (vocabulary diversity, sentence length, structural effort) seamlessly takes over if the OpenAI API experiences downtime or rate limits, guaranteeing 100% debate completion.
+- **Anonymous Mode & Anti-Bias**: Users can toggle anonymity — the backend generates a unique alias via a randomized adjective/noun matrix, then securely maps it back to the master User schema post-match to update XP and ELO without exposing identity during the live event.
+- **Progression Economy**: Dynamic ELO tiers (Novice → Debater → Skilled → Master → Legend), spectator XP betting with dynamic odds calculation, and a marketplace for avatars and profile themes.
 
-## Key Features
+## Architecture Notes
 
-- Real-time debate rooms with WebSocket communication
-- AI moderation that flags logical fallacies and off-topic arguments
-- Live scoring algorithm based on argument strength, evidence, and rebuttals
-- Audience voting with real-time poll visualization
-- Debate replay and highlight generation
+- **Concurrency Safety**: Atomic MongoDB `findOneAndUpdate` operations with strict status checks prevent race conditions when multiple users submit final arguments simultaneously.
+- **Secure Connection Lifecycles**: A dynamic React `AuthContext` monitors `localStorage` JWTs — if a user logs out or switches accounts in another tab, the system tears down the stale socket connection and re-authenticates immediately, eliminating token-leakage vulnerabilities.
+- **Database Design**: Nested schemas (`Rounds` containing arrays of `Messages`) minimize reads so the entire game state can be injected into the OpenAI prompt in a single query. TTL indexes on the `Notification` model auto-purge 30-day-old documents at the storage layer, removing the need for CRON jobs.

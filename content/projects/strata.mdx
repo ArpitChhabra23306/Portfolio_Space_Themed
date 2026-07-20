@@ -1,0 +1,46 @@
+---
+title: "Strata"
+slug: "strata"
+summary: "A Perplexity-style real-time AI search engine that crawls the live web and streams a cited, synthesized answer."
+problem: "Standard chatbots answer from static training data with no live sources, so answers about current events or fast-changing facts are often wrong or unverifiable."
+solution: "Built a full-stack AI search app that runs live web search via the Tavily API, streams the synthesized answer token-by-token from OpenAI over Server-Sent Events, and appends verifiable cited sources at the end of the stream."
+impact: "Delivers real-time, cited AI answers with sub-second time-to-first-token streaming, secure Supabase OAuth (Google/GitHub), and a type-safe Prisma/PostgreSQL data layer ready for persistent chat history."
+techStack: ["React 19", "React Router 7", "Tailwind CSS v4", "Bun", "Express 5", "Prisma", "PostgreSQL", "Supabase Auth", "Tavily API", "OpenAI API"]
+domains: ["AI", "Search", "Full Stack"]
+liveUrl: ""
+repoUrl: "https://github.com/ArpitChhabra23306/Strata"
+mediaUrl: "/projects/strata-preview.gif"
+mediaType: "gif"
+featured: false
+pinned: true
+order: 3
+---
+
+## Overview
+
+Strata (internally "AI Browzer") is a real-time AI search application: users ask a question, the backend crawls the web live for relevant sources, and the answer streams back with citations attached.
+
+## Core Features
+
+- **OAuth Authentication**: Google and GitHub sign-in via the Supabase Auth client, with a custom JWT verification middleware protecting every backend endpoint.
+- **Live Web Search**: Real-time search indexing and retrieval through the Tavily API for up-to-date context on every query.
+- **Streamed AI Synthesis**: Answers stream chunk-by-chunk from OpenAI's `gpt-4o-mini` via Server-Sent Events, with cited sources appended at the end of the stream inside a structured `<SOURCES>` block.
+- **Dashboard Workspace**: A secured layout showing the authenticated user's profile and session state.
+
+## Architecture
+
+The stack runs entirely on **Bun** as the execution engine for both frontend and backend. Auth flows through Supabase (2-way sync triggers keep the Postgres `User` table aligned with Supabase's own `auth.users`), while Express streams the search-and-synthesize pipeline:
+
+1. Frontend sends the query to `POST /strata_ask`.
+2. Backend fetches live snippets and URLs from Tavily.
+3. Backend calls OpenAI with the query + search context, `stream: true`.
+4. Each text chunk is written directly to the response as it arrives.
+5. Once generation completes, the backend appends the source URLs and closes the stream.
+
+The relational schema (Prisma on PostgreSQL) models `User → Conversation → Message` so full chat history can be persisted and later replayed as context for follow-up questions — the next planned feature.
+
+## Planned Features
+
+- Persisted database chat history and multi-turn, context-aware conversations
+- Per-user daily query credit limits
+- Stripe-based credit top-ups

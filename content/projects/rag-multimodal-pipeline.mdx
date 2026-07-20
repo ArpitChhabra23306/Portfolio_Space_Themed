@@ -1,0 +1,36 @@
+---
+title: "Multimodal RAG Pipeline"
+slug: "rag-multimodal-pipeline"
+summary: "A triple-cloud, multimodal Retrieval-Augmented Generation pipeline that reads text, images, and tables inside PDFs."
+problem: "Standard text-only RAG systems can't see or search the images, charts, and tables buried inside PDF documents — a huge share of a document's actual information."
+solution: "Combined three cloud AI providers, each doing the job they're best at: OpenAI Vision to describe images/tables as searchable text, Cohere embeddings for high-quality semantic search, and Groq's Llama 3.3 for near-instant, low-cost chat — persisted in a local ChromaDB vector store so each PDF is only ever visually processed once."
+impact: "Achieves state-of-the-art multimodal retrieval while keeping ongoing chat costs near zero, since expensive vision processing runs exactly once per document and is cached permanently to disk."
+techStack: ["Python", "LangChain", "Unstructured.io", "ChromaDB", "OpenAI Vision", "Cohere Embeddings", "Groq (Llama 3.3)"]
+domains: ["AI", "RAG", "Python"]
+liveUrl: ""
+repoUrl: "https://github.com/ArpitChhabra23306/RAG_prac"
+mediaUrl: "/projects/rag-pipeline-preview.gif"
+mediaType: "gif"
+featured: false
+pinned: true
+order: 4
+---
+
+## Overview
+
+This pipeline goes beyond standard text-only RAG — it is multimodal, meaning it can read, understand, and search through images, charts, and tables found inside PDF documents, by turning unsearchable pixels into searchable concepts before anything gets embedded.
+
+## Pipeline Architecture
+
+The system runs in four distinct phases:
+
+1. **Ingestion & Parsing (Unstructured.io)** — `partition_pdf(strategy="hi_res")` breaks the document into elements, separating raw text, HTML-converted tables, and base64-encoded images.
+2. **AI Vision Summarization (OpenAI)** — Any chunk containing an image or table is routed to `gpt-4o-mini`, which writes a detailed text description of what it sees. This description replaces the image in the pipeline entirely.
+3. **Embedding & Indexing (Cohere + ChromaDB)** — Raw text and the generated image descriptions are embedded with Cohere's `embed-english-v3.0` (optimized for semantic search) and persisted to a local ChromaDB store.
+4. **Retrieval & Chat (Groq)** — On a user question, the system retrieves the top 3-5 relevant chunks from ChromaDB and passes the pre-processed text (never raw images) to Groq's `llama-3.3-70b-versatile` for a fast, conversational answer.
+
+## Key Features
+
+- **Zero-Latency Persistence**: Because visual processing results are saved to ChromaDB, a PDF is only ever visually processed once — reopening a database for chat requires no re-scanning.
+- **Triple-Cloud Cost Optimization**: Each provider is used for exactly what it's best (and cheapest) at — vision, embeddings, and chat are deliberately split across three different APIs rather than over-relying on one expensive model for everything.
+- **Rate-Limit Protection**: Built-in `time.sleep` safeguards prevent token exhaustion (HTTP 429) when batch-processing large documents.
