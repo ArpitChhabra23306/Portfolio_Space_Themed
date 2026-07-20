@@ -152,7 +152,7 @@ export default function CodingStats() {
     try {
       const [codolioRes, officialRes] = await Promise.allSettled([
         fetch(`/api/stats/codolio${q}`, fresh ? { cache: "no-store" } : {}).then((r) => r.json()),
-        fetch(`/api/stats/github`).then((r) => r.json()),
+        fetch(`/api/stats/github${q}`, fresh ? { cache: "no-store" } : {}).then((r) => r.json()),
       ]);
 
       const codolio = codolioRes.status === "fulfilled" ? codolioRes.value : null;
