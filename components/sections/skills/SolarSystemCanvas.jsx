@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useMemo, Fragment } from "react";
+import { useRef, useState, useMemo, useEffect, Fragment } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls, Stars } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
@@ -333,8 +333,25 @@ function SolarSystem({ category, skills }) {
    with ssr: false from the parent component
    ═══════════════════════════════════════════════ */
 export default function SolarSystemCanvas({ activeCategory, skills }) {
+  // Pause the render loop (incl. bloom post-processing) when the Skills
+  // section is scrolled out of view — otherwise it renders every frame across
+  // the entire page, which is the heaviest GPU cost on the site.
+  const [active, setActive] = useState(true);
+
+  useEffect(() => {
+    const el = document.getElementById("skills");
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <Canvas
+      frameloop={active ? "always" : "never"}
       camera={{ position: [0, 8, 15], fov: 40, near: 0.1, far: 500 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       dpr={[1, 1.5]}
