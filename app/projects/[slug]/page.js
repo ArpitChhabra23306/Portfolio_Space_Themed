@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Section from "@/components/shared/Section";
 import Pill from "@/components/shared/Pill";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://arpitchhabra.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.arpitchhabra.site";
 
 export async function generateStaticParams() {
   const projects = await getProjects();

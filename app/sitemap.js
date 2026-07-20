@@ -1,6 +1,6 @@
 import { getProjects } from "@/lib/content";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://arpitchhabra.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.arpitchhabra.site";
 
 export default async function sitemap() {
   const projects = await getProjects();

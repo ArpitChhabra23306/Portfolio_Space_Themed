@@ -42,10 +42,35 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.arpitchhabra.site";
+const SITE_TITLE = "Arpit Chhabra — Full-Stack Developer";
+const SITE_DESCRIPTION =
+  "Personal portfolio of Arpit Chhabra, B.Tech IT student at IIIT Una. Full-stack developer specializing in MERN stack.";
+
 export const metadata = {
-  title: "Arpit Chhabra — Full-Stack Developer",
-  description:
-    "Personal portfolio of Arpit Chhabra, B.Tech IT student at IIIT Una. Full-stack developer specializing in MERN stack.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: "%s — Arpit Chhabra",
+  },
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Arpit Chhabra",
+    type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: SITE_TITLE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({ children }) {

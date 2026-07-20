@@ -11,15 +11,10 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@next/third-parties": "^14.2.0",
-    "@radix-ui/react-dialog": "^1.0.0",
-    "@radix-ui/react-slot": "^1.0.0",
-    "@radix-ui/react-tabs": "^1.0.0",
     "@radix-ui/react-tooltip": "^1.0.0",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@react-three/postprocessing": "^2.19.1",
-    "@studio-freight/lenis": "^1.0.42",
-    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.0",
     "geist": "^1.7.1",
@@ -31,7 +26,6 @@
     "next-mdx-remote": "^6.0.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
-    "rss-parser": "^3.13.0",
     "tailwind-merge": "^2.2.0",
     "three": "^0.184.0"
   },
