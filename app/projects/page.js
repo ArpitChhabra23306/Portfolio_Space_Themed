@@ -5,27 +5,26 @@ import GlassCard from "@/components/shared/GlassCard";
 import Pill from "@/components/shared/Pill";
 import Link from "next/link";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://arpitchhabra.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.arpitchhabra.site";
 
 export function generateMetadata() {
   return {
     title: "Projects — Arpit Chhabra",
     description:
       "Explore all projects by Arpit Chhabra — full-stack apps, tools, and experiments.",
+    alternates: { canonical: "/projects" },
     openGraph: {
       title: "Projects — Arpit Chhabra",
       description:
         "Explore all projects by Arpit Chhabra — full-stack apps, tools, and experiments.",
       url: `${SITE_URL}/projects`,
       type: "website",
-      images: [{ url: `${SITE_URL}/og.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: "Projects — Arpit Chhabra",
       description:
         "Explore all projects by Arpit Chhabra — full-stack apps, tools, and experiments.",
-      images: [`${SITE_URL}/og.png`],
     },
   };
 }

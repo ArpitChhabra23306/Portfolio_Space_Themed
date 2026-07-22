@@ -12,5 +12,12 @@
     "metric": 4000,
     "metricLabel": "Top 4,000 of 260,000",
     "year": 2025
+  },
+  {
+    "title": "Career Development Cell (CDC), IIIT Una",
+    "category": "Leadership",
+    "metricLabel": "Recruiter Relations & Placement Drives",
+    "description": "Managed recruiter communication and execution of placement drives.",
+    "year": 2025
   }
 ]
