@@ -3,21 +3,14 @@
     "title": "National Road Safety Hackathon",
     "category": "Hackathon",
     "metric": 50,
-    "metricLabel": "Top 50 of 5000+",
-    "year": 2024
+    "metricLabel": "Semi-Finalist — Top 50 of 5,000+ teams",
+    "year": 2025
   },
   {
-    "title": "Smart India Hackathon Finalist",
+    "title": "Adobe Hackathon — Round 2 Qualifier",
     "category": "Hackathon",
-    "metric": 100,
-    "metricLabel": "Top 100 nationally",
-    "year": 2024
-  },
-  {
-    "title": "IIIT Una Hack4Change Winner",
-    "category": "Hackathon",
-    "metric": 1,
-    "metricLabel": "1st Place",
-    "year": 2024
+    "metric": 4000,
+    "metricLabel": "Top 4,000 of 260,000",
+    "year": 2025
   }
 ]

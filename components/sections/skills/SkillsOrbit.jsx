@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { Layout, Server, Database, Code, Cloud, Wrench, Move } from "lucide-react";
+import { Layout, Server, Database, Code, Cloud, Wrench, Move, Sparkles } from "lucide-react";
 
 const SolarSystemCanvas = dynamic(() => import("./SolarSystemCanvas"), {
   ssr: false,
@@ -19,6 +19,7 @@ const CATEGORY_ICONS = {
   Database: Database,
   Languages: Code,
   DevOps: Cloud,
+  "AI & GenAI": Sparkles,
   Tools: Wrench,
 };
 

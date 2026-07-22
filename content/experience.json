@@ -1,28 +1,27 @@
 [
   {
-    "role": "Full Stack Developer Intern",
+    "role": "Full Stack Intern",
     "org": "ModelSuite AI",
     "location": "Remote",
     "startDate": "2026-04-01",
     "endDate": null,
     "bullets": [
-      "Building end-to-end MERN stack features for an AI-powered SaaS platform",
-      "Implemented CI/CD pipelines reducing deployment time by 40%",
-      "Collaborating with cross-functional teams on product roadmap and sprint planning"
+      "Developed and maintained backend features using Node.js, Express.js, MongoDB, and Redis across multiple modules of an internal HR platform, following structured Agile sprint workflows and production Git practices",
+      "Implemented JWT authentication and role-based access control while clearing all CI/CD quality gates — ESLint, Semgrep, and Danger.js — on every merged contribution via GitHub Actions preflight checks",
+      "Built a real-time messenger system using Socket.io v4 with Redis pub/sub, supporting multi-window cross-tab sync, DM and group conversations, and a floating Quick Chat widget with popout window via BroadcastChannel"
     ],
-    "tags": ["MERN", "CI/CD", "SaaS", "Agile"]
+    "tags": ["Node.js", "Express.js", "MongoDB", "Redis", "Socket.io", "JWT", "CI/CD", "GitHub Actions"]
   },
   {
-    "role": "Frontend Developer Intern",
-    "org": "TechVista Solutions",
+    "role": "Web Developer Intern",
+    "org": "Microvision",
     "location": "Remote",
-    "startDate": "2025-06-01",
-    "endDate": "2025-09-30",
+    "startDate": "2026-01-01",
+    "endDate": "2026-03-31",
     "bullets": [
-      "Developed responsive UI components using React and Tailwind CSS",
-      "Optimized web vitals achieving 95+ Lighthouse performance score",
-      "Integrated REST APIs and managed state with React Query"
+      "Architected and shipped a production MERN stack service management platform for 400+ service centres across 5 states, featuring JWT-based multi-role auth, a 5-step complaint wizard, and automated WhatsApp notifications via the Meta API",
+      "Engineered a product tracking module with serial-number lookup and 3-year auto warranty calculation"
     ],
-    "tags": ["React", "Tailwind CSS", "REST APIs", "Performance"]
+    "tags": ["MongoDB", "Express.js", "React", "Node.js", "JWT", "Meta API"]
   }
 ]

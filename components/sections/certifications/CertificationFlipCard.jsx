@@ -107,14 +107,18 @@ export default function CertificationFlipCard({ cert }) {
                 <dt className="text-text-dim">Issuer</dt>
                 <dd className="text-right">{cert.issuer}</dd>
               </div>
-              <div className="flex justify-between gap-3">
-                <dt className="text-text-dim">Credential ID</dt>
-                <dd className="font-mono text-[11px] text-right truncate max-w-[60%]">{cert.credentialId}</dd>
-              </div>
-              <div className="flex justify-between gap-3">
-                <dt className="text-text-dim">Issued</dt>
-                <dd>{formattedDate}</dd>
-              </div>
+              {cert.credentialId && (
+                <div className="flex justify-between gap-3">
+                  <dt className="text-text-dim">Credential ID</dt>
+                  <dd className="font-mono text-[11px] text-right truncate max-w-[60%]">{cert.credentialId}</dd>
+                </div>
+              )}
+              {formattedDate && (
+                <div className="flex justify-between gap-3">
+                  <dt className="text-text-dim">Issued</dt>
+                  <dd>{formattedDate}</dd>
+                </div>
+              )}
               <div className="flex justify-between gap-3">
                 <dt className="text-text-dim">Expires</dt>
                 <dd>{expirationDate}</dd>
