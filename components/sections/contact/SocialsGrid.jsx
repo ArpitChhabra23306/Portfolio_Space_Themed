@@ -1,4 +1,5 @@
 import {
+  Github,
   Linkedin,
   Instagram,
   Twitter,
@@ -15,6 +16,7 @@ import { readMdx } from "@/lib/content";
 import { CONTACT, SOCIALS } from "@/lib/site";
 
 const ICONS = {
+  github: Github,
   linkedin: Linkedin,
   instagram: Instagram,
   x: Twitter,

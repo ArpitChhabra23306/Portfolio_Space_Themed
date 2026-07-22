@@ -170,8 +170,8 @@ export default function AboutClient({ data, children }) {
               </div>
               <div className="h-[1px] w-full bg-white/[0.05]" />
               <div>
-                <p className="text-3xl font-bold text-white/90 tracking-tighter">16 yrs</p>
-                <p className="text-sm text-text-muted/60 mt-1">Built first app</p>
+                <p className="text-3xl font-bold text-white/90 tracking-tighter">Age 19</p>
+                <p className="text-sm text-text-muted/60 mt-1">Shipped first app</p>
               </div>
             </div>
           </div>

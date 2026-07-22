@@ -9,6 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import {
+  Github,
   Linkedin,
   Instagram,
   Twitter,
@@ -33,6 +34,7 @@ const GlobeScene = dynamic(() => import("./GlobeScene"), {
 });
 
 const SOCIAL_ICONS = {
+  github: Github,
   linkedin: Linkedin,
   instagram: Instagram,
   x: Twitter,
