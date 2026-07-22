@@ -51,6 +51,7 @@ const SOCIAL_LINKS = ACTIVE_SOCIALS.map((s) => ({
 const ROLES = [
   "Full-Stack Developer",
   "MERN Engineer",
+  "AI & GenAI Explorer",
   "Open-Source Contributor",
   "Competitive Programmer",
 ];

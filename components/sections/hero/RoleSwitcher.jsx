@@ -6,6 +6,7 @@ import { useReducedMotion } from "framer-motion";
 const ROLES = [
   "Full-Stack Developer",
   "MERN Engineer",
+  "AI & GenAI Explorer",
   "Open-Source Contributor",
   "Competitive Programmer",
 ];
