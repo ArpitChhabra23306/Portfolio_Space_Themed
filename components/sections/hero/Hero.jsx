@@ -9,11 +9,10 @@ import {
   useTransform,
 } from "framer-motion";
 import {
-  Github,
   Linkedin,
+  Instagram,
   Twitter,
   Code2,
-  ChefHat,
   Orbit,
   Mail,
   Phone,
@@ -34,11 +33,10 @@ const GlobeScene = dynamic(() => import("./GlobeScene"), {
 });
 
 const SOCIAL_ICONS = {
-  github: Github,
   linkedin: Linkedin,
+  instagram: Instagram,
   x: Twitter,
   leetcode: Code2,
-  codechef: ChefHat,
   codolio: Orbit,
 };
 

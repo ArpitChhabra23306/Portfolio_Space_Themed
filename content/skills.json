@@ -1,5 +1,5 @@
 {
-  "categories": ["Frontend", "Backend", "DevOps", "Database", "Languages", "AI & GenAI", "Tools"],
+  "categories": ["Frontend", "Backend", "Database", "Languages", "AI & GenAI", "Tools"],
   "skills": [
     { "name": "React", "category": "Frontend", "icon": "react", "proficiency": "Advanced", "yearsOfExperience": 3 },
     { "name": "Next.js", "category": "Frontend", "icon": "nextjs", "proficiency": "Advanced", "yearsOfExperience": 2 },
@@ -17,11 +17,6 @@
     { "name": "Bun", "category": "Backend", "icon": "bun", "proficiency": "Familiar", "yearsOfExperience": 1 },
     { "name": "bcrypt", "category": "Backend", "icon": "bcrypt", "proficiency": "Advanced", "yearsOfExperience": 2 },
     { "name": "Multer", "category": "Backend", "icon": "multer", "proficiency": "Advanced", "yearsOfExperience": 2 },
-    { "name": "Docker", "category": "DevOps", "icon": "docker", "proficiency": "Proficient", "yearsOfExperience": 1 },
-    { "name": "GitHub Actions", "category": "DevOps", "icon": "github-actions", "proficiency": "Proficient", "yearsOfExperience": 2 },
-    { "name": "Vercel", "category": "DevOps", "icon": "vercel", "proficiency": "Advanced", "yearsOfExperience": 2 },
-    { "name": "Nginx", "category": "DevOps", "icon": "nginx", "proficiency": "Familiar", "yearsOfExperience": 1 },
-    { "name": "Cloudflare", "category": "DevOps", "icon": "cloudflare", "proficiency": "Proficient", "yearsOfExperience": 1 },
     { "name": "MongoDB", "category": "Database", "icon": "mongodb", "proficiency": "Advanced", "yearsOfExperience": 3 },
     { "name": "Mongoose", "category": "Database", "icon": "mongoose", "proficiency": "Advanced", "yearsOfExperience": 3 },
     { "name": "PostgreSQL", "category": "Database", "icon": "postgresql", "proficiency": "Proficient", "yearsOfExperience": 1 },
@@ -53,6 +48,7 @@
     { "name": "Unstructured.io", "category": "AI & GenAI", "icon": "unstructured", "proficiency": "Familiar", "yearsOfExperience": 1 },
     { "name": "Git", "category": "Tools", "icon": "git", "proficiency": "Advanced", "yearsOfExperience": 4 },
     { "name": "GitHub", "category": "Tools", "icon": "github", "proficiency": "Advanced", "yearsOfExperience": 4 },
+    { "name": "Vercel", "category": "Tools", "icon": "vercel", "proficiency": "Advanced", "yearsOfExperience": 2 },
     { "name": "VS Code", "category": "Tools", "icon": "vscode", "proficiency": "Advanced", "yearsOfExperience": 4 },
     { "name": "Vim", "category": "Tools", "icon": "vim", "proficiency": "Proficient", "yearsOfExperience": 2 },
     { "name": "Figma", "category": "Tools", "icon": "figma", "proficiency": "Familiar", "yearsOfExperience": 1 },

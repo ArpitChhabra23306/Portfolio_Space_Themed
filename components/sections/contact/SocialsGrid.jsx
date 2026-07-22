@@ -1,9 +1,8 @@
 import {
-  Github,
   Linkedin,
+  Instagram,
   Twitter,
   Code2,
-  ChefHat,
   Orbit,
   Mail,
   Phone,
@@ -16,11 +15,10 @@ import { readMdx } from "@/lib/content";
 import { CONTACT, SOCIALS } from "@/lib/site";
 
 const ICONS = {
-  github: Github,
   linkedin: Linkedin,
+  instagram: Instagram,
   x: Twitter,
   leetcode: Code2,
-  codechef: ChefHat,
   codolio: Orbit,
 };
 
